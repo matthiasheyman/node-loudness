@@ -23,3 +23,5 @@ const mute = await loudness.getMuted()
 ## OS Support
 
 Currently macOS, Windows (>= Vista) and Linux (ALSA) is supported, please send a pull request if you are using another setup.
+
+**Linux users: if pulse-audio is present, pulse device will be used**

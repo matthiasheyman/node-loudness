@@ -1,11 +1,20 @@
 import {execa} from 'execa';
 
+let defaultDeviceCache: string;
+let defaultArgs: string[];
+
 async function amixer(...args: string[]) {
-	const result = await execa('amixer', args);
+	const allArgs = [];
+	allArgs.push(...await getDefaultArgs());
+	if (args && args.length > 0) {
+		allArgs.push(...args);
+	}
+
+	console.info('exec amixer', allArgs);
+	const result = await execa('amixer', allArgs);
 	return result.stdout;
 }
 
-let defaultDeviceCache: string;
 const reDefaultDevice = /simple mixer control '([a-z\d -]+)',\d+/i;
 
 function parseDefaultDevice(data: string) {
@@ -16,6 +25,28 @@ function parseDefaultDevice(data: string) {
 	}
 
 	return result[1]!;
+}
+
+const reWhichPactl = /^\/.*\/pactl$/;
+
+async function systemHasPulseAudio() {
+	try {
+		const {stdout} = await execa('which', ['pactl']);
+		if (reWhichPactl.test(stdout)) {
+			return true;
+		}
+	} catch {}
+
+	return false;
+}
+
+async function getDefaultArgs() {
+	if (!defaultArgs) {
+		const hasPulse = await systemHasPulseAudio();
+		defaultArgs = hasPulse ? ['-D', 'pulse'] : [];
+	}
+
+	return defaultArgs;
 }
 
 async function getDefaultDevice() {
@@ -42,7 +73,9 @@ function parseInfo(data: string) {
 }
 
 async function getInfo() {
-	return parseInfo(await amixer('get', await getDefaultDevice()));
+	const	device = await getDefaultDevice();
+	const amixerOutput = await amixer('get', device);
+	return parseInfo(amixerOutput);
 }
 
 export async function getVolume() {
