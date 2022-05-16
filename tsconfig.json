@@ -1,0 +1,12 @@
+{
+  "extends": "@sindresorhus/tsconfig",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "files": [
+    "index.ts",
+    "./impl/windows/index.ts",
+    "./impl/darwin.ts",
+    "./impl/linux.ts"
+  ]
+}
