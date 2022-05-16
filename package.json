@@ -4,6 +4,7 @@
   "license": "MIT",
   "repository": "matthiasheyman/node-loudness",
   "type": "module",
+  "private": "false",
   "exports": "./dist/index.js",
   "scripts": {
     "test": "xo && ava",
