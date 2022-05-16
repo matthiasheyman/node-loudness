@@ -1,16 +1,18 @@
 /* eslint-env mocha */
-
-const loudness = require('../')
-
-const assert = require('assert')
+import * as loudness from '../index.js'
+import assert from 'assert'
 
 describe('loudness', () => {
   let systemVolume, isMuted
 
   before(async () => {
     await Promise.all([
-      loudness.getVolume().then(v => { systemVolume = v }),
-      loudness.getMuted().then(m => { isMuted = m })
+      loudness.getVolume().then((v) => {
+        systemVolume = v
+      }),
+      loudness.getMuted().then((m) => {
+        isMuted = m
+      })
     ])
   })
 

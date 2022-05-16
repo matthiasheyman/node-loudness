@@ -1,31 +1,35 @@
-const os = require('os')
+import os from 'node:os'
+import * as darwin from './impl/darwin.js'
+import * as linux from './impl/linux.js'
+import * as windows from './impl/windows/index.js'
 let impl = null
 
 switch (os.type()) {
   case 'Darwin':
-    impl = require('./impl/darwin')
+    impl = darwin
     break
   case 'Linux':
-    impl = require('./impl/linux')
+    impl = linux
     break
   case 'Windows_NT':
-    impl = require('./impl/windows')
+    impl = windows
     break
   default:
     throw new Error('Your OS is currently not supported by node-loudness.')
 }
 
-module.exports = {
-  setVolume (volume) {
-    return impl.setVolume(volume)
-  },
-  getVolume () {
-    return impl.getVolume()
-  },
-  setMuted (muted) {
-    return impl.setMuted(muted)
-  },
-  getMuted () {
-    return impl.getMuted()
-  }
+export async function setVolume (volume) {
+  return impl.setVolume(volume)
+}
+
+export async function getVolume () {
+  return impl.getVolume()
+}
+
+export async function setMuted (muted) {
+  return impl.setMuted(muted)
+}
+
+export async function getMuted () {
+  return impl.getMuted()
 }
