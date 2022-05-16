@@ -14,9 +14,7 @@
   "files": [
     "dist"
   ],
-  "types": [
-    "dist"
-  ],
+  "types": "dist",
   "dependencies": {
     "execa": "^6.1.0"
   },
