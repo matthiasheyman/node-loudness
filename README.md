@@ -1,5 +1,7 @@
 # node-loudness
 
+*This was originally forked from https://github.com/LinusU/node-loudness*
+
 A node.js library to control the systems output volume
 
 ## Usage

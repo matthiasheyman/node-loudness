@@ -1,11 +1,23 @@
 {
-  "name": "@matthe/loudness",
+  "name": "@matthey/loudness",
   "version": "0.6.1",
   "license": "MIT",
-  "repository": "matthiasheyman/node-loudness",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthiasheyman/node-loudness.git"
+  },
   "type": "module",
-  "private": "false",
   "exports": "./dist/index.js",
+  "description": "A node.js library to control the systems output volume",
+  "bugs": {
+    "url": "https://github.com/matthiasheyman/node-loudness/issues"
+  },
+  "homepage": "https://github.com/matthiasheyman/node-loudness#readme",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "author": "Matthias Heyman",
   "scripts": {
     "test": "xo && ava",
     "release": "np",
@@ -44,5 +56,8 @@
   },
   "xo": {
     "space": false
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
