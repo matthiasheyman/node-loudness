@@ -13,7 +13,7 @@
     "url": "https://github.com/matthiasheyman/node-loudness/issues"
   },
   "homepage": "https://github.com/matthiasheyman/node-loudness#readme",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "directories": {
     "test": "test"
   },
