@@ -21,7 +21,8 @@
   "scripts": {
     "test": "xo && ava",
     "release": "np",
-    "build": "del-cli dist && tsc",
+    "copy-windows": "cp ./impl/windows/adjust_get_current_system_volume_vista_plus.exe ./dist/impl/windows/",
+    "build": "del-cli dist && tsc && npm run copy-windows",
     "prepare": "npm run build"
   },
   "files": [
