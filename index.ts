@@ -1,4 +1,4 @@
-import os from 'node:os';
+import {platform} from 'node:os';
 import * as darwin from './impl/darwin.js';
 import * as linux from './impl/linux.js';
 import * as windows from './impl/windows/index.js';
@@ -12,14 +12,14 @@ declare interface Loudness {
 
 let impl: Loudness;
 
-switch (os.type()) {
-	case 'Darwin':
+switch (platform()) {
+	case 'darwin':
 		impl = darwin;
 		break;
-	case 'Linux':
+	case 'linux':
 		impl = linux;
 		break;
-	case 'Windows_NT':
+	case 'win32':
 		impl = windows;
 		break;
 	default:

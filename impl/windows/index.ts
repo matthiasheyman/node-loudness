@@ -1,10 +1,13 @@
-import path from 'node:path';
+import {join, dirname} from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {execa} from 'execa';
 
-const executablePath = path.join(
-	path.dirname(import.meta.url),
+const executablePath = join(
+	dirname(fileURLToPath(import.meta.url)),
 	'adjust_get_current_system_volume_vista_plus.exe',
 );
+
+console.log('EXE path:', executablePath);
 
 async function runProgram(...args: string[]) {
 	const result = await execa(executablePath, args);

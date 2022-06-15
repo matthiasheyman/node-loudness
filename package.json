@@ -21,7 +21,7 @@
   "scripts": {
     "test": "xo && ava",
     "release": "np",
-    "copy-windows": "cp ./impl/windows/adjust_get_current_system_volume_vista_plus.exe ./dist/impl/windows/",
+    "copy-windows": "cpy ./impl/windows/adjust_get_current_system_volume_vista_plus.exe ./dist/impl/windows/ --flat",
     "build": "del-cli dist && tsc && npm run copy-windows",
     "prepare": "npm run build"
   },
@@ -33,13 +33,14 @@
     "execa": "^6.1.0"
   },
   "devDependencies": {
-    "@sindresorhus/tsconfig": "^2.0.0",
-    "ava": "^4.2.0",
+    "@sindresorhus/tsconfig": "^3.0.1",
+    "ava": "^4.3.0",
+    "cpy-cli": "^4.1.0",
     "del-cli": "^4.0.1",
     "np": "^7.6.1",
-    "ts-node": "^10.7.0",
-    "typescript": "^4.6.4",
-    "xo": "^0.48.0"
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3",
+    "xo": "^0.50.0"
   },
   "engines": {
     "node": ">=16"
