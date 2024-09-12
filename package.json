@@ -43,18 +43,7 @@
     "xo": "^0.59.3"
   },
   "engines": {
-    "node": ">=16"
-  },
-  "ava": {
-    "extensions": {
-      "ts": "module"
-    },
-    "nodeArguments": [
-      "--import=tsimp"
-    ],
-    "files": [
-      "test/**/*"
-    ]
+    "node": ">=20"
   },
   "xo": {
     "space": false
