@@ -15,3 +15,4 @@ node_modules
 npm-debug.log
 !adjust_get_current_system_volume_vista_plus.exe
 dist
+.tsimp

@@ -7,18 +7,18 @@ const executablePath = join(
 	'adjust_get_current_system_volume_vista_plus.exe',
 );
 
-async function runProgram(...args: string[]) {
-	const result = await execa(executablePath, args);
+async function runProgram(...arguments_: string[]) {
+	const result = await execa(executablePath, arguments_);
 	return result.stdout;
 }
 
 async function getVolumeInfo() {
 	const data = await runProgram();
-	const args = data.split(' ');
+	const arguments_ = data.split(' ');
 
 	return {
-		volume: Number.parseInt(args[0]!, 10),
-		muted: Boolean(Number.parseInt(args[1]!, 10)),
+		volume: Number.parseInt(arguments_[0]!, 10),
+		muted: Boolean(Number.parseInt(arguments_[1]!, 10)),
 	};
 }
 

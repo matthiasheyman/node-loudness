@@ -3,41 +3,48 @@ import * as darwin from './impl/darwin.js';
 import * as linux from './impl/linux.js';
 import * as windows from './impl/windows/index.js';
 
-declare interface Loudness {
-	getMuted(): Promise<boolean>;
-	getVolume(): Promise<number>;
-	setMuted(muted: boolean): Promise<void>;
-	setVolume(volume: number): Promise<void>;
-}
+type Loudness = {
+	getMuted: () => Promise<boolean>;
+	getVolume: () => Promise<number>;
+	setMuted: (muted: boolean) => Promise<void>;
+	setVolume: (volume: number) => Promise<void>;
+};
 
-let impl: Loudness;
+let implementation: Loudness;
 
 switch (platform()) {
-	case 'darwin':
-		impl = darwin;
+	case 'darwin': {
+		implementation = darwin;
 		break;
-	case 'linux':
-		impl = linux;
+	}
+
+	case 'linux': {
+		implementation = linux;
 		break;
-	case 'win32':
-		impl = windows;
+	}
+
+	case 'win32': {
+		implementation = windows;
 		break;
-	default:
+	}
+
+	default: {
 		throw new Error('Your OS is currently not supported by node-loudness.');
+	}
 }
 
 export async function setVolume(volume: number) {
-	return impl.setVolume(volume);
+	return implementation.setVolume(volume);
 }
 
 export async function getVolume() {
-	return impl.getVolume();
+	return implementation.getVolume();
 }
 
 export async function setMuted(muted: boolean) {
-	return impl.setMuted(muted);
+	return implementation.setMuted(muted);
 }
 
 export async function getMuted() {
-	return impl.getMuted();
+	return implementation.getMuted();
 }
